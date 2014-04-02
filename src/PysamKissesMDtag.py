@@ -1,7 +1,10 @@
+'''
+Author: Yun Yan <yanyun@whu.edu.cn>
+Data  : Apr 1, 2014
+'''
 
 import pysam
 import string
-import random
 
 def parseMD (md):
     '''
@@ -123,67 +126,3 @@ def moreCigar (cigar, md):
         else:
             output.append(cigar[i])
     return(output)
-
-# Demo of alignments
-# bamFile = "/Users/yunyan/Projects/TestData/bin.md.e.bam"
-# aln = pysam.Samfile(bamFile, "rb")
-#
-# I = 0
-# nums = random.sample(xrange(10000), 20 )
-# for read in aln:
-#     I += 1
-#     if I in nums:
-#         print
-#         print "Read " + str(I) + ":"
-#         print read.cigarstring
-#         # print read
-#         # print read.alen
-#         md = read.opt("MD")
-#         print md
-#         # print "cigar array: "
-#         cigar = read.cigar
-#         print cigar
-#         print moreCigar(cigar, md)
-
-# testMD = "1A1^AT40"
-# parsedMd = parseMD(testMD)
-# print "parsed Md: "
-# print(parsedMd)
-#
-# queryLen = 10
-# print(str(queryLen) + " query Length")
-# truncatedMd = truncateMD(queryLen, parsedMd)
-# print "Output: md list of query length"
-# print (truncatedMd[0])
-# print "truncated md list"
-# print (truncatedMd[1])
-
-print "################"
-print "Demo: "
-demoMD = "31^AT3T14"
-print "demo MD tag: "
-print demoMD
-print "demo CIGAR List: "
-cigarList = [(0, 31), (2,2), (3, 94), (0, 18)]
-print cigarList
-print "######"
-print "cigar list with match/mismatch information: "
-moreCigarList = moreCigar(cigarList, demoMD)
-print moreCigarList
-
-# #
-# print "#######"
-# debugMD = "36T14"
-# debugMD = parseMD(debugMD)
-# queryLen = 33
-# print "1. " + str(queryLen) + "region: "
-# trucateMD1 = truncateMD(queryLen, debugMD)
-# print trucateMD1[0]
-# print trucateMD1[1]
-#
-# queryLen = 18
-# debugMD = trucateMD1[1]
-# print "2. " + str(queryLen) + "region: "
-# trucateMD2 = truncateMD(queryLen, debugMD)
-# print trucateMD2[0]
-# print trucateMD2[1]
